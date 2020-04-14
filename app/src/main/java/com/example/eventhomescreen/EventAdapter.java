@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     Context context;
     List<Event> eventList;
+
+    private OnItemClicked onClick;
+
+    //make interface like this
+    public interface OnItemClicked {
+        void onItemClick(int position);
+    }
 
     public EventAdapter(Context context, List<Event> eventList){
         this.context = context;
@@ -31,11 +39,35 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(@NonNull EventViewHolder eventViewHolder, final int i) {
 
         Event event = eventList.get(i);
         eventViewHolder.eventtitle.setText(event.getEventtitle());
         eventViewHolder.eventpicture.setImageDrawable(context.getResources().getDrawable(event.getEventpicture()));
+        eventViewHolder.eventpicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onItemClick(i);
+            }
+        });
+        eventViewHolder.eventtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onItemClick(i);
+            }
+        });
+        eventViewHolder.eventcategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onItemClick(i);
+            }
+        });
+        eventViewHolder.eventlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onItemClick(i);
+            }
+        });
     }
 
     @Override
@@ -47,6 +79,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
         TextView eventtitle, eventcategory;
         ImageView eventpicture;
+        LinearLayout eventlayout;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,7 +87,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             eventtitle = itemView. findViewById(R.id.eventtitle);
             eventcategory = itemView. findViewById(R.id.eventcategory);
             eventpicture = itemView. findViewById(R.id.eventpicture);
+            eventlayout = itemView.findViewById(R.id.eventparent);
         }
+    }
+
+    public void setOnClick(OnItemClicked onClick)
+    {
+        this.onClick=onClick;
     }
 }
 
