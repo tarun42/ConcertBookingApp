@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "749014221321",
-    "firebase_url": "https://eventhomescreen.firebaseio.com",
-    "project_id": "eventhomescreen",
-    "storage_bucket": "eventhomescreen.appspot.com"
+    "project_number": "284247300479",
+    "firebase_url": "https://concertbookingapp-2eef7.firebaseio.com",
+    "project_id": "concertbookingapp-2eef7",
+    "storage_bucket": "concertbookingapp-2eef7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:749014221321:android:91cb8f2f10a47b3d516ed8",
+        "mobilesdk_app_id": "1:284247300479:android:73edaff2f7a22867d0624a",
         "android_client_info": {
           "package_name": "com.example.eventhomescreen"
         }
       },
       "oauth_client": [
         {
-          "client_id": "749014221321-h7gufkkbcaqfijphfhj2nt502blhupjg.apps.googleusercontent.com",
+          "client_id": "284247300479-gi5h6j8vblc7nnp861agph2645q7vh7r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.eventhomescreen",
-            "certificate_hash": "13c70c7c280ea8b72aad7da08eb87dea868dee80"
+            "certificate_hash": "edf9f67c6076372f2774ce1fac3ca0079ab5c95d"
           }
         },
         {
-          "client_id": "749014221321-aid3sa92q832fvr18mdm9djnvnh9qg67.apps.googleusercontent.com",
+          "client_id": "284247300479-2bud2b8galia923b4c70vc4btvtqbb2s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBomWmjjmv5PWfrkyXdKif5F8WUVPrwBb8"
+          "current_key": "AIzaSyAE1ApyGK-zbpTKJ57-OZ25Rw72j-IqO4A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "749014221321-aid3sa92q832fvr18mdm9djnvnh9qg67.apps.googleusercontent.com",
+              "client_id": "284247300479-2bud2b8galia923b4c70vc4btvtqbb2s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

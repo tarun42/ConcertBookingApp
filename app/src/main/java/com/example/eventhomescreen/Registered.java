@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.SnapHelper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -17,11 +18,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.rubensousa.gravitysnaphelper.GravityPagerSnapHelper;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements EventAdapter.OnItemClicked {
+public class Registered extends AppCompatActivity {
 
     private Button button;
     RecyclerView eventsplace;
@@ -33,6 +39,32 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //FireBase:
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("TAG", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+
+
+
+
+
+
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.OnIt
                 openActivity2();
             }
         });
+
 
 
         eventsplace = findViewById(R.id.eventsplace);
@@ -104,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.OnIt
         eventsplace.setHasFixedSize(true);
         eventAdapter = new EventAdapter(this, eventList);
         eventsplace.setAdapter(eventAdapter);
-        eventAdapter.setOnClick((EventAdapter.OnItemClicked) MainActivity.this);
 
         final SnapHelper snapHelper = new GravityPagerSnapHelper(Gravity.START);
         snapHelper.attachToRecyclerView(eventsplace);
@@ -155,7 +187,6 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.OnIt
                 }
             }
 
-
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -163,19 +194,9 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.OnIt
         });
     }
     public void openActivity2(){
-        Intent intent = new Intent(this, Registered.class);
+        Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
 
-    @Override
-    public void onItemClick(int position) {
-        Intent i = new Intent(getApplicationContext(), moreInfo.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("title",eventList.get(position).eventtitle);
-        bundle.putString("icon", String.valueOf(eventList.get(position).eventpicture));
-        bundle.putString("category",eventList.get(position).eventcategory);
-        bundle.putString("key", String.valueOf(position));
-        i.putExtras(bundle);
-        startActivity(i);
-    }
 }
+
