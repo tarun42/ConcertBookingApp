@@ -10,6 +10,10 @@ public class Event {
 
     public Event(String eventtitle, String eventcategory, Integer eventpicture) {
         this.eventtitle = eventtitle;
+        this(eventcategory,eventpicture);
+     
+    }
+    public Event( String eventcategory, Integer eventpicture) {
         this.eventcategory = eventcategory;
         this.eventpicture = eventpicture;
     }
